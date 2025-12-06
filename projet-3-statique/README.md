@@ -221,7 +221,7 @@ if (!emailRegex.test(formData.email)) {
 - Code minifié possible
 - Images optimisables
 - Lazy loading possible
-- Service Worker ajoutant possible
+- Service Worker ajout possible
 
 ## 🛠️ Développement
 
