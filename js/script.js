@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 // Close mobile menu if open
-                if (navMenu && navMenu.classList.contains('active')) {
+                if (navMenu && navMenu.classList.contains('active') && burgerMenu) {
                     navMenu.classList.remove('active');
                     burgerMenu.classList.remove('active');
                     const spans = burgerMenu.querySelectorAll('span');
@@ -118,7 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Header scroll effect
-    let lastScroll = 0;
     const header = document.querySelector('.header');
     
     window.addEventListener('scroll', function() {
@@ -129,8 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         }
-        
-        lastScroll = currentScroll;
     });
     
     // Stats counter animation
@@ -160,6 +157,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Trigger counter animation when stats section is visible
     const statsSection = document.querySelector('.stats');
+    const STATS_TARGETS = {
+        clients: 500,
+        emails: 10000000,
+        satisfaction: 95
+    };
+    
     if (statsSection) {
         const statsObserver = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
@@ -167,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     entry.target.classList.add('counted');
                     
                     const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    const targets = [500, 10000000, 95];
+                    const targets = [STATS_TARGETS.clients, STATS_TARGETS.emails, STATS_TARGETS.satisfaction];
                     
                     statNumbers.forEach((statNumber, index) => {
                         animateCounter(statNumber, targets[index]);
@@ -247,23 +250,3 @@ function showNotification(message, type = 'success') {
         }, 300);
     }, 5000);
 }
-
-// Add mobile menu styles dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @media (max-width: 768px) {
-        .nav-menu.active {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            gap: 1rem;
-        }
-    }
-`;
-document.head.appendChild(style);

@@ -435,6 +435,19 @@ body {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        gap: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -467,10 +480,4 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.service-card,
-.stat-item,
-.info-item {
-    animation: fadeInUp 0.6s ease-out;
 }
